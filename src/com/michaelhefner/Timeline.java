@@ -11,10 +11,6 @@ public class Timeline {
         return dateTimeObservableList;
     }
 
-    public static void setDateTimeObservableList(ObservableList<TimeSlot> dateTimeObservableList) {
-        Timeline.dateTimeObservableList = dateTimeObservableList;
-    }
-
     public static void addTimeSlot(TimeSlot timeSlotToAdd) {
         boolean isOk = true;
 
@@ -26,6 +22,8 @@ public class Timeline {
             }
         }
 
+        if (timeSlotToAdd.getStart().isAfter(timeSlotToAdd.getEnd()))
+            isOk = false;
         if (dateTimeObservableList.isEmpty() || isOk)
             dateTimeObservableList.add(timeSlotToAdd);
 
